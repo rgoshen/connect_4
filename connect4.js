@@ -11,6 +11,9 @@ const HEIGHT = 6;
 let currPlayer = 1; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
 let gameOver = false;
+const statusSpan = document.querySelector(".status");
+
+statusSpan.classList.toggle("red");
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
@@ -55,17 +58,22 @@ function makeHtmlBoard() {
     }
     htmlBoard.append(row);
   }
+  // update status area
+  statusSpan.textContent = `Player ${currPlayer}'s turn`;
 }
 
-// Creates reset button
-const reset = document.createElement("button");
-reset.classList.add("resetBtn");
-reset.innerText = "Reset";
-document.body.append(reset);
-
-reset.addEventListener("click", () => {
-  window.location.reload();
-});
+// Reset Toggle
+const label = document.createElement("label");
+label.setAttribute("for", "resetToggle");
+label.classList.add("switch");
+const reset = document.createElement("INPUT");
+reset.setAttribute("type", "checkbox");
+reset.setAttribute("id", "resetToggle");
+const toggleSpan = document.createElement("span");
+toggleSpan.classList.add("slider");
+label.append(reset);
+label.append(toggleSpan);
+document.body.append(label);
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
@@ -92,9 +100,11 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   gameOver = true;
-  setTimeout(() => {
-    alert(msg);
-  }, 500);
+  statusSpan.textContent = `${msg}`;
+  statusSpan.classList.add("game-over");
+  // setTimeout(() => {
+  //   alert(msg);
+  // }, 500);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -126,6 +136,10 @@ function handleClick(evt) {
 
   // switch players
   currPlayer = currPlayer === 1 ? 2 : 1;
+
+  // update status area
+  statusSpan.textContent = `Player ${currPlayer}'s turn`;
+  statusSpan.classList.toggle("red");
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -180,6 +194,13 @@ function checkForWin() {
     }
   }
 }
+
+/** handleClick: handle click reset toggle */
+reset.addEventListener("click", () => {
+  setTimeout(() => {
+    window.location.reload();
+  }, 700);
+});
 
 makeBoard();
 makeHtmlBoard();
