@@ -35,6 +35,7 @@ function makeHtmlBoard() {
   // click event listener
   const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
+  top.classList.add("column-top");
   top.addEventListener("click", handleClick);
 
   for (let x = 0; x < WIDTH; x++) {

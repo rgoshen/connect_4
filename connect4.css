@@ -1,19 +1,91 @@
+:root {
+  --blue: #1f55f8;
+  --yellow: #e8ca14;
+  --red: #e72525;
+  --black: #010006;
+}
+
+@font-face {
+  font-family: titleFont;
+  src: url("Equestria-yJY2.ttf");
+}
+
+@font-face {
+  font-family: bodyFont;
+  src: url("BlitzwingExpanded-189Z.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: bodyFont;
+  padding: 1.5625rem;
+  width: 100%;
+}
+
+h1 {
+  color: var(--blue);
+  text-transform: uppercase;
+  font-family: titleFont;
+  font-size: 4.5rem;
+  text-shadow: 0 1px 0 #ccc,
+    0 2px 0 #c9c9c9,
+    0 3px 0 #bbb,
+    0 4px 0 #b9b9b9,
+    0 5px 0 #aaa,
+    0 6px 1px rgba(0, 0, 0, .1),
+    0 0 5px rgba(0, 0, 0, .1),
+    0 1px 3px rgba(0, 0, 0, .3),
+    0 3px 5px rgba(0, 0, 0, .2),
+    0 5px 10px rgba(0, 0, 0, .25),
+    0 10px 10px rgba(0, 0, 0, .2),
+    0 20px 20px rgba(0, 0, 0, .15);
+}
+
+#game {
+  border-style: groove;
+  border-color: var(--yellow) var(--blue) var(--blue);
+  border-width: 0px 8px 8px;
+  background-color: var(--yellow);
+  padding: .5rem;
+  margin: 1.5rem;
+  box-shadow: 5px 10px 8px #888888;
+}
+
 /* game board table */
 
+#board {
+  border-spacing: 0.5rem;
+  margin-top: 2rem;
+}
+
 #board td {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   border: solid 1px #666;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
 }
 
 /* pieces are div within game table cells: draw as colored circles */
 
 .piece {
-  margin: 5px;
-  width: 80%;
-  height: 80%;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  animation-duration: 0.5s;
+  animation-duration: 0.9s;
   animation-name: dropPiece;
 }
 
@@ -21,25 +93,51 @@
   from {
     transform: translateY(-325px);
   }
+
   to {
     transform: translateY(0);
   }
 }
 
 .p1 {
-  background-color: red;
+  background-color: var(--red);
+  border: 5px inset darkred;
 }
 
 .p2 {
-  background-color: yellow;
+  background-color: var(--black);
+  border: 5px inset gray;
 }
 
 /* column-top is table row of clickable areas for each column */
 
 #column-top td {
-  border: dashed 1px lightgray;
+  border: dashed 0px var(--yellow);
 }
 
 #column-top td:hover {
   background-color: gold;
+  cursor: pointer;
+}
+
+.resetBtn {
+  background-color: white;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  padding: 0.5rem 1rem;
+  font-family: bodyFont;
+  font-size: 1rem;
+  box-shadow: 5px 10px 8px #888888;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.resetBtn:hover {
+  background-color: var(--blue);
+  color: white;
+}
+
+.resetBtn:active {
+  box-shadow: 0 5px 8px #666;
+  transform: translateY(4px);
 }
