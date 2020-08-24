@@ -54,24 +54,23 @@ function makeHtmlBoard() {
     }
     htmlBoard.append(row);
   }
-
-  // Creates reset button
-  const reset = document.createElement("button");
-  reset.classList.add("resetBtn");
-  reset.innerText = "Reset";
-  document.body.append(reset);
 }
 
-//FIXME: add event listener to reset the board
-const resetBtn = document.querySelector(".resetBtn");
+// Creates reset button
+const reset = document.createElement("button");
+reset.classList.add("resetBtn");
+reset.innerText = "Reset";
+document.body.append(reset);
+
+reset.addEventListener("click", () => {
+  window.location.reload();
+});
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  console.log("x ", x);
   for (let y = HEIGHT - 1; y >= 0; y--) {
     if (!board[y][x]) {
-      console.log("y", y);
       return y;
     }
   }
