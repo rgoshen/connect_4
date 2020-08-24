@@ -94,7 +94,7 @@ function endGame(msg) {
   gameOver = true;
   setTimeout(() => {
     alert(msg);
-  }, 200);
+  }, 500);
 }
 
 /** handleClick: handle click of column top to play piece */

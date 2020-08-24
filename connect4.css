@@ -53,6 +53,10 @@ h1 {
     0 20px 20px rgba(0, 0, 0, .15);
 }
 
+h1>span{
+  color: var(--red);
+}
+
 #game {
   border-style: groove;
   border-color: var(--yellow) var(--blue) var(--blue);
