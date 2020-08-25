@@ -13,9 +13,9 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
 let gameOver = false;
 const statusSpan = document.querySelector(".status");
 const colorGrp = document.querySelector(".btn-group");
-const clinkSound = new sound("/clink_sound.mp3");
+const clinkSound = new sound("clink_sound.mp3");
 const endGameSound = new sound(
-  "/SMALL_CROWD_APPLAUSE-Yannick_Lemieux-1268806408.mp3"
+  "SMALL_CROWD_APPLAUSE-Yannick_Lemieux-1268806408.mp3"
 );
 
 statusSpan.classList.toggle("red");
