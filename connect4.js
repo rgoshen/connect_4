@@ -12,6 +12,11 @@ let currPlayer = 1; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
 let gameOver = false;
 const statusSpan = document.querySelector(".status");
+const colorGrp = document.querySelector(".btn-group");
+const clinkSound = new sound("/clink_sound.mp3");
+const endGameSound = new sound(
+  "/SMALL_CROWD_APPLAUSE-Yannick_Lemieux-1268806408.mp3"
+);
 
 statusSpan.classList.toggle("red");
 
@@ -102,9 +107,12 @@ function endGame(msg) {
   gameOver = true;
   statusSpan.textContent = `${msg}`;
   statusSpan.classList.add("game-over");
-  // setTimeout(() => {
-  //   alert(msg);
-  // }, 500);
+  statusSpan.classList.add("blinking");
+  let blink = setInterval(() => {
+    const text = document.querySelector(".blinking");
+    text.style.visibility = text.style.visibility == "hidden" ? "" : "hidden";
+  }, 500);
+  endGameSound.play();
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -113,6 +121,10 @@ function handleClick(evt) {
   // get x from ID of clicked cell
   if (gameOver) return;
   const x = +evt.target.id;
+
+  setTimeout(() => {
+    clinkSound.play();
+  }, 600);
 
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
@@ -201,6 +213,21 @@ reset.addEventListener("click", () => {
     window.location.reload();
   }, 700);
 });
+
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function () {
+    this.sound.play();
+  };
+  this.stop = function () {
+    this.sound.pause();
+  };
+}
 
 makeBoard();
 makeHtmlBoard();
