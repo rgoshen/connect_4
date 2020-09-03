@@ -27,12 +27,10 @@ html {
 
 body {
   background: rgb(2, 0, 36);
-  background: radial-gradient(
-    circle,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background: radial-gradient(circle,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 35%,
+      rgba(0, 212, 255, 1) 100%);
   color: white;
   align-items: center;
   display: flex;
@@ -54,7 +52,7 @@ h1 {
     0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
-h1 > span {
+h1>span {
   color: var(--red);
 }
 
@@ -200,16 +198,51 @@ h1 > span {
   transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--blue);
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px var(--blue);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+}
+
+/* small devices */
+@media only screen and (max-width:576px) {
+  #board td {
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+
+  .switch {
+    width: 25px;
+    height: 14px;
+  }
+
+  .slider:before {
+    height: 11px;
+    width: 11px;
+    left: 4px;
+    bottom: 1px;
+  }
+}
+
+@media only screen and (max-width:465px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* xs devices */
+@media only screen and (max-width:425px) {
+  #board td {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
 }
